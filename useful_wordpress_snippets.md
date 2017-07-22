@@ -1,18 +1,18 @@
 ## Useful Wordpress snippets
 ## functions.php
-####remove admin bar in front-end for logged in user
+#### remove admin bar in front-end for logged in user
 ```php
 show_admin_bar( false );
 ```
 
-####add body class
+#### add body class
 ```php
 add_filter( 'body_class', function( $classes ) {
    return array_merge( $classes, array( 'class-name' ) );
 } );
 ```
 
-####override default gallery output
+#### override default gallery output
 
 ```php
 function fix_my_gallery($output, $attr) {
@@ -153,7 +153,7 @@ function fix_my_gallery($output, $attr) {
 }
 add_filter("post_gallery", "fix_my_gallery",10,2);
 ```
-####remove default images upload sizes
+#### remove default images upload sizes
 ```php
 function remove_default_image_sizes( $sizes) {
     unset( $sizes['thumbnail']);
@@ -164,7 +164,7 @@ function remove_default_image_sizes( $sizes) {
     }
 add_filter('intermediate_image_sizes_advanced', 'remove_default_image_sizes');
 ```
-####add taxonomies to pages
+#### add taxonomies to pages
 
 ```php
 function add_taxonomies_to_pages() {  
@@ -176,7 +176,7 @@ function add_taxonomies_to_pages() {
 add_action( 'init', 'add_taxonomies_to_pages' );
 ```
 
-####add svg support for media upload
+#### add svg support for media upload
 
 ```php
 function cc_mime_types($mimes) {
@@ -186,7 +186,7 @@ function cc_mime_types($mimes) {
 add_filter('upload_mimes', 'cc_mime_types');
 ```
 
-####remove p tags around uploaded images
+#### remove p tags around uploaded images
 
 ```php
 function filter_ptags_on_images($content){
@@ -196,7 +196,7 @@ function filter_ptags_on_images($content){
 add_filter('the_content', 'filter_ptags_on_images');
 ```
 
-####remove default link to images
+#### remove default link to images
 
 ```php
 add_filter( 'the_content', 'attachment_image_link_remove_filter' );
@@ -212,7 +212,7 @@ function attachment_image_link_remove_filter( $content ) {
  } 
 ```
  
-####using lazy loading by replace the generated the_content() images `src` with `data-src`
+#### using lazy loading by replace the generated the_content() images `src` with `data-src`
 ```php
 function add_lazyload($content) {
 
@@ -232,7 +232,7 @@ function add_lazyload($content) {
     }
     add_filter('the_content', 'add_lazyload');
 ```
-####Enable support for Post Formats. ([link](https://developer.wordpress.org/themes/functionality/post-formats/))
+#### Enable support for Post Formats. ([link](https://developer.wordpress.org/themes/functionality/post-formats/))
 
 ```php
 add_theme_support( 'post-formats', array(
@@ -241,7 +241,7 @@ add_theme_support( 'post-formats', array(
 	) );
 ```
 
-####create custom post type
+#### create custom post type
 
 ```php
 add_action( 'init', 'create_post_type' );
@@ -288,7 +288,7 @@ function create_post_type() {
 
 **One note on CTP:** if it's ```hierarchical => false```, then it will be treated like default *post* by wordpress core and most plugins, if it's ```hierarchical => true```, then it'll act like default *page*. 
 
-####link a custom post type as child to another custom post type (or any other post/page)
+#### link a custom post type as child to another custom post type (or any other post/page)
 
 - this one the child CPT **should** have `hierarchical => false` (default is false when creating custom post type):
 
@@ -368,11 +368,11 @@ add_filter( 'post_type_link', function( $link, $post ) {
 }, 10, 2 );
 ```
 
-####Add any kind of meta-box to any post type
+#### Add any kind of meta-box to any post type
 
 A more detailed [instruction](https://www.sitepoint.com/adding-meta-boxes-post-types-wordpress/) about how to add **any kind of meta-box** to **any post type**, and eventually use the input value to `update_post_meta` or `wp_set_object_terms`, then retrieve them afterwards on post load.
 
-####Creating single select wordpress taxonomies
+#### Creating single select wordpress taxonomies
 A great article [here](http://sudarmuthu.com/blog/creating-single-select-wordpress-taxonomies/)!!
 
 - **step 1**: 
@@ -466,7 +466,7 @@ function show_required_field_error_msg( $post ) {
 add_action( 'edit_form_top', 'show_required_field_error_msg' );
 ```
 
-####Add template selection to CPT
+#### Add template selection to CPT
 check this [answer](https://wordpress.stackexchange.com/a/204671)
 
 ```php
@@ -558,7 +558,7 @@ add_filter( 'single_template', 'custom_single_template' );
 /** END Custom Post Type Template Selector **/
 ```
 
-####Enable the front page selection for CPT
+#### Enable the front page selection for CPT
 see this [answer](https://wordpress.stackexchange.com/a/126271)
 
 ```php
@@ -638,7 +638,7 @@ add_action( 'pre_get_posts', 'enable_front_page_campaign' );
 ```
  
 
-##Some custom post type template
+## Some custom post type template
 - infinite **page** navigation
 
 ```php
@@ -709,7 +709,7 @@ if( get_adjacent_post(false, '', false) ) {
 
 
 
-##All about wp_query
+## All about wp_query
 
 see link [here](https://code.tutsplus.com/tutorials/wp_query-arguments-taxonomies--cms-23090) for detailed **tanomoxies**.
 
@@ -739,5 +739,5 @@ echo "Post {$i} / {$query->post_count} in TAXONOMY TERM";
 
 
 
-##Ajax pagination
+## Ajax pagination
 - **pagination** combined with **sort/filter/search** in **Ajax**, great code piece [here](http://carlofontanos.com/wordpress-front-end-ajax-pagination-with-search-and-sort/).
