@@ -560,6 +560,7 @@ add_filter( 'single_template', 'custom_single_template' );
 
 #### Enable the front page selection for CPT
 see this [answer](https://wordpress.stackexchange.com/a/126271)
+**SHOULD REWORK!!!** this snippet this too damaging! It will add hook to anything used `wp_dropdown_page`....
 
 ```php
 function add_campaign_page_to_dropdown( $pages ){
