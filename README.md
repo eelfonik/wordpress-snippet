@@ -1,2 +1,2 @@
-# wordpress-dev
+# wordpress-snippet
 Some useful tricks about wordpress
