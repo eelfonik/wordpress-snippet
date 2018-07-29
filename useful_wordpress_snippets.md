@@ -12,6 +12,12 @@ add_filter( 'body_class', function( $classes ) {
 } );
 ```
 
+#### cache bust according to file modification time
+```php
+wp_enqueue_style( 'stylesheet', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
+wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main-min.js', array('jquery'), filemtime( get_template_directory() . '/js/main-min.js' ), true );
+```
+
 #### override default gallery output
 
 ```php
